@@ -3,8 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+    <script src="lib/jquery-3.2.1.min.js"></script>
+    <script>if (window.module) module = window.module;</script>
 </head>
 <body>
-2
+<div id="confBlock">
+    <label for="urlDir" id="urlDirLabel">Select dir url</label>
+    <input id="urlDir" type="file" webkitdirectory directory multiple/>
+</div>
+<img src="monkey-bg.jpg" alt="" id="monkey">
+
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+        color: white;
+    }
+    body {
+        background: black;
+    }
+    #confBlock {
+        background: red;
+        position: absolute;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        background: red;
+        width: calc(100% - 40px);
+        padding: 20px;
+    }
+    label {
+        cursor: pointer;
+    }
+    #monkey {
+        position: absolute;
+        bottom: 0;
+        width: 100vw;
+        max-width: 250px;
+        left: 0;
+        right: 0;
+        margin: auto;
+    }
+    #urlDir {
+        display: none;
+    }
+</style>
+
+<script> require('./render.js') </script>
 </body>
 </html>

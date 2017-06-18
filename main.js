@@ -4,12 +4,12 @@ var BrowserWindow = electron.BrowserWindow;
 
 app.on('ready', () => {
     appWindow = new BrowserWindow({
-        width: 300,
-        height: 300,
+        width: 600,
+        height: 400,
         icon: __dirname + '/icon.png'
     });
     appWindow.loadURL(`file://${__dirname}/index.html`);
-    appWindow.webContents.openDevTools();
+    // appWindow.webContents.openDevTools();
 });
 app.on('window-all-closed', function() {
     app.quit();
