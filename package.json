@@ -1,0 +1,31 @@
+{
+  "name": "front-monkey",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/StekolschikovV/FrontMonkey.git"
+  },
+  "author": "StekolschikovV",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/StekolschikovV/FrontMonkey/issues"
+  },
+  "homepage": "https://github.com/StekolschikovV/FrontMonkey#readme",
+  "dependencies": {
+    "electron": "latest",
+    "path": "latest",
+    "chokidar": "latest",
+    "fs": "latest",
+    "npm-sass": "latest",
+    "node-cmd": "latest",
+    "coffee": "latest",
+    "jade": "latest",
+    "desktop-screenshot": "latest"
+  }
+}
