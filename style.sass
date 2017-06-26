@@ -1,0 +1,139 @@
+*
+  padding: 0
+  margin: 0
+  outline: 0
+  outline-offset: 0
+  body
+    background: black
+    #manu-left
+      position: absolute
+      z-index: 999
+      background: white
+      width: 30px
+      height: 100vh
+      border-right: 1px solid darken(white, 10%)
+      ul
+        padding: 0px
+        li
+          color: black
+          padding: 5px 0
+          width: 100%
+          text-align: center
+          cursor: pointer
+          background: white
+          transition: 0.5s
+          &:hover
+            background: darken(white, 10%)
+            color: lighten(black, 25%)
+        .selected
+          background: darken(white, 10%)
+          color: lighten(black, 25%)
+    #manu-left-slider
+      #directory, #livereload, #configuration
+        padding: 5px
+        position: absolute
+        z-index: 998
+        left: -200px
+        top: 0
+        width: 200px
+        max-width: calc(100% - 30px)
+        height: calc(100vh - 10px)
+        background: darken(white, 10%)
+        transition: 0.5s
+      .selected
+        left: 30px !important
+      #directory
+        ul
+          width: 100%
+          padding: 0
+          li
+            width: 100%
+            cursor: pointer
+            text-align: center
+            padding: 3px 0
+            &:hover
+              background: darken(white, 20%)
+          #removeUsedDir
+            h4
+              display: inline-block
+          #addNewDir
+            input
+              display: none
+          .selected
+            background: darken(white, 20%)
+      #livereload
+        #livereloadDirLabel
+          text-align: center
+          background: #cccccc
+          display: block
+          padding: 3px 0
+          margin-bottom: 5px
+          transition: 0.5s
+          &:hover
+            background: darken(white, 30%)
+          &:active
+            ackground: darken(white, 50%)
+        #livereloadDirInput
+          display: none
+        input
+          padding: 3px
+          width: calc( 100% - 7px )
+          margin-bottom: 5px
+          border: 0
+        button
+          padding: 3px 0
+          width: 100%
+          cursor: pointer
+          border: 0
+          background: darken(white, 20%)
+          outline: none
+          transition: 0.5s
+          &:hover
+            background: darken(white, 30%)
+          &:active
+            ackground: darken(white, 50%)
+    #content-right
+      width: calc(100% - 30px)
+      height: 100vh
+      background: white
+      position: absolute
+      right: 0
+      top: 0
+      #content-right-name, #content-right-url
+        padding: 5px
+        border-bottom: 1px solid darken(white, 10%)
+      #content-right-name
+      #content-right-url
+      #log
+        width: calc(100% - 10px)
+        height: calc(100% - 62px)
+        padding: 5px
+        //overflow-x: scroll
+        overflow-y: auto
+        overflow-x: hidden
+        //background: red
+
+#confBlock
+  background: red
+  position: absolute
+  z-index: 1
+  left: 0
+  top: 0
+  background: red
+  width: calc(100% - 40px)
+  padding: 20px
+
+label
+  cursor: pointer
+
+#monkey
+  position: absolute
+  bottom: 0
+  width: 100vw
+  max-width: 250px
+  left: 0
+  right: 0
+  margin: auto
+
+#urlDir
+  display: none

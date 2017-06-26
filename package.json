@@ -27,7 +27,6 @@
     "fs": "latest",
     "gulp": "latest",
     "gulp-autoprefixer": "^4.0.0",
-    "gulp-babel": "^6.1.2",
     "gulp-coffeescript": "latest",
     "gulp-cssmin": "latest",
     "gulp-htmlmin": "^3.0.0",
@@ -39,10 +38,9 @@
     "gulp-server-livereload": "^1.9.2",
     "gulp-typescript": "^3.1.7",
     "jade": "^1.11.0",
-    "livereload": "^0.6.2",
+    "jsonfile": "^3.0.0",
     "node-cmd": "latest",
     "path": "latest",
-    "sass": "latest",
-    "sys": "0.0.1"
+    "sass": "latest"
   }
 }

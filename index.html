@@ -1,56 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
-    <script src="lib/jquery-3.2.1.min.js"></script>
-    <script>if (window.module) module = window.module;</script>
-</head>
-<body>
-<div id="confBlock">
-    <label for="urlDir" id="urlDirLabel">Select dir url</label>
-    <input id="urlDir" type="file" webkitdirectory directory multiple/>
-</div>
-
-<img src="monkey-bg.jpg" alt="" id="monkey">
-
-<style>
-    * {
-        padding: 0;
-        margin: 0;
-        color: white;
-    }
-    body {
-        background: black;
-    }
-    #confBlock {
-        background: red;
-        position: absolute;
-        z-index: 1;
-        left: 0;
-        top: 0;
-        background: red;
-        width: calc(100% - 40px);
-        padding: 20px;
-    }
-    label {
-        cursor: pointer;
-    }
-    #monkey {
-        position: absolute;
-        bottom: 0;
-        width: 100vw;
-        max-width: 250px;
-        left: 0;
-        right: 0;
-        margin: auto;
-    }
-    #urlDir {
-        display: none;
-    }
-</style>
-
-<script> require('./render.js') </script>
+<!DOCTYPE html><html lang="en"><head><script>if (typeof module === 'object') {window.module = module; module = undefined;}</script><link href="./style.css" rel="stylesheet"><link href="./lib/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet"><script>if (window.module) module = window.module;</script><meta charset="UTF-8"><title>FrontMonkey</title></head><body><div id="manu-left"><ul><li data-page="directory"><i aria-hidden="true" class="fa fa-compass"></i></li><li data-page="livereload"><i aria-hidden="true" class="fa fa-globe"></i></li><li data-page="configuration"><i aria-hidden="true" class="fa fa-cog"></i></li></ul></div><div id="manu-left-slider"><div id="directory"><ul><li><h4 id="addNewDir"><i aria-hidden="true" class="fa fa-plus"></i><label id="addNewDirInputLabel" for="addNewDirInput">Add new dir</label><input id="addNewDirInput" type="file" webkitdirectory="" directory="" multiple=""></h4></li><li id="removeUsedDir"><i aria-hidden="true" class="fa fa-minus"></i><h4>Remove used dir</h4></li></ul></div><div id="livereload"><label id="livereloadDirLabel" for="addNewDirInput"><h4>Livereload dir</h4></label><input id="livereloadDirInput" type="file" webkitdirectory="" directory="" multiple=""> <input type="text" placeholder="port(default 80)" id="livereloadPort"> <button id="livereloadStart"><h4>Start</h4></button></div><div id="configuration">333</div></div><div id="content-right"><h4 id="content-right-name">Not select</h4><h6 id="content-right-url">Not select</h6><div id="log">Log empty</div></div><script>if (typeof module === 'object') {window.module = module; module = undefined;}</script><script src="./lib/jquery-3.2.1.min.js"></script><script>if (window.module) module = window.module;</script>
+<script>require('./render.js')</script>
 </body>
 </html>
+
+

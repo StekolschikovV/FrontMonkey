@@ -1,0 +1,59 @@
+doctype html
+html(lang='en')
+  head
+    script.
+      if (typeof module === 'object') {window.module = module; module = undefined;}
+    link(href="./style.css", rel="stylesheet")
+    link(href="./lib/font-awesome-4.7.0/css/font-awesome.min.css", rel="stylesheet")
+    script.
+      if (window.module) module = window.module;
+    meta(charset='UTF-8')
+    title FrontMonkey
+  body
+    #manu-left
+      ul
+        li(data-page='directory')
+          i.fa.fa-compass(aria-hidden='true')
+        li(data-page='livereload')
+          i.fa.fa-globe(aria-hidden='true')
+        li(data-page='configuration')
+          i.fa.fa-cog(aria-hidden='true')
+    #manu-left-slider
+      #directory
+        ul
+          li 
+            h4#addNewDir
+              i.fa.fa-plus(aria-hidden='true')
+              label#addNewDirInputLabel(for='addNewDirInput') Add new dir
+              input#addNewDirInput(type='file', webkitdirectory='', directory='', multiple='')
+          li#removeUsedDir
+            i.fa.fa-minus(aria-hidden='true')
+            h4 Remove used dir
+      #livereload
+        label#livereloadDirLabel(for='addNewDirInput')
+          h4 Livereload dir
+        input#livereloadDirInput(type='file', webkitdirectory='', directory='', multiple='')
+        input(type='text' placeholder="port(default 80)" id="livereloadPort")
+        button#livereloadStart
+          h4 Start
+      #configuration 333
+    #content-right
+      h4#content-right-name Not select
+      h6#content-right-url Not select
+      #log Log empty
+    script.
+      if (typeof module === 'object') {window.module = module; module = undefined;}
+    script(src='./lib/jquery-3.2.1.min.js')
+    script.
+      if (window.module) module = window.module;
+    script.
+      require('./render.js')
+
+
+
+
+
+
+
+
+
