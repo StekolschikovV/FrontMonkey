@@ -10,64 +10,13 @@ var ts = require('gulp-typescript');
 var minifyjs = require('gulp-js-minify');
 var autoprefixer = require('gulp-autoprefixer');
 var cssmin = require('gulp-cssmin');
-var coffeescript = require('gulp-coffeescript');
+//var coffeescript = require('gulp-coffeescript');
 var jade = require('jade');
 var gulpJade = require('gulp-jade');
 var htmlmin = require('gulp-htmlmin');
-var babel = require('gulp-babel');
+// var babel = require('gulp-babel');
 var server = require('gulp-server-livereload');
 var jsonfile = require('jsonfile');
-
-
-// // Get file dir
-// $('#urlDir').change(function () {
-//     pathDir = this.files[0].path;
-//     $('#urlDirLabel').text(pathDir);
-//     watch();
-//     livereload(pathDir);
-// });
-//
-// // Watch dir
-// function watch() {
-//     var watcher = chokidar.watch(pathDir, { ignored: /^\./, persistent: true });
-//     watcher.on('change', function (path) {
-//         _preprocessors(p.basename(path), p.extname(p.basename(path)), path, path.replace(p.basename(path), ''));
-//     });
-// };
-//
-// // Preprocessors
-// function _preprocessors(filename, extname, path, dir) {
-//     console.log(filename, extname, path, dir);
-//     if (extname == ".css") {
-//         gulp.src(path).pipe(autoprefixer({ browsers: ['last 2 versions'], cascade: false })).pipe(cssmin()).pipe(gulp.dest(dir));
-//     } else if (extname == ".sass") {
-//         cmd.run('sass ' + path + '>' + dir + filename.replace(extname, '') + '.css', function () {
-//             setTimeout(function () {
-//                 _preprocessors(filename.replace(extname, '') + '.css', '.css', dir + filename, dir);
-//             }, 0);
-//         });
-//     } else if (extname == ".ts") {
-//         gulp.src(path).pipe(ts({ noImplicitAny: true })).pipe(gulp.dest(dir));
-//     } else if (extname == ".coffee") {
-//         gulp.src(path).pipe(coffeescript({ bare: true })).pipe(gulp.dest(dir));
-//     } else if (extname == ".jade") {
-//         gulp.src(path).pipe(gulpJade({ jade: jade, pretty: true })).pipe(htmlmin({ collapseWhitespace: true })).pipe(gulp.dest(dir));
-//     } else if (extname == ".js") {
-//         gulp.src(path).pipe(babel({
-//             presets: ['es2015']
-//         })).pipe(gulp.dest(dir));
-//     }
-// }
-//
-// // Livereload
-// function livereload(pathDir) {
-//     gulp.src(pathDir).pipe(server({
-//         livereload: true,
-//         directoryListing: true,
-//         open: true,
-//         port: 80
-//     }));
-// }
 
 var confJson = {};
 var conf = {
@@ -80,7 +29,7 @@ var conf = {
     // METHODS
     checkConfFile: function checkConfFile() {
         fs.exists('./conf.json', function (exists) {
-            if (!exists) fs.appendFile('./conf.json', '', function () {});
+            if (!exists) fs.appendFile('./conf.json', '{"url":[]}', function () {});
             else {
                 jsonfile.readFile('./conf.json', function (err, obj) {
                     confJson = obj;
@@ -91,10 +40,12 @@ var conf = {
         });
 
     }, addUrl: function addUrl(url) {
-        confJson.url.push(url);
-        jsonfile.writeFile('./conf.json', confJson, function (err) {});
-        conf.saveObjToJson();
-        conf.start();
+        if(confJson.url.indexOf(url) == -1) {
+            confJson.url.push(url);
+            jsonfile.writeFile('./conf.json', confJson, function (err) {});
+            conf.saveObjToJson();
+            conf.start();
+        }
     }, saveObjToJson: function saveObjToJson() {
         jsonfile.writeFile('./conf.json', confJson, function (err) {});
     }, removeUrl: function () {
@@ -210,7 +161,7 @@ var preproc = {
         $(document).on('click', '#livereloadStart', function () {
             preproc.livereloadStart();
         });
-    },   
+    },
     // METHODS
     selectDir: function selectDir(t) {
         preproc.dir = $(t).data('url');
@@ -240,91 +191,30 @@ var preproc = {
             content.addToLog(filename, extname, path, dir);
             gulp.src(path).pipe(ts({ noImplicitAny: true })).pipe(gulp.dest(dir));
         } else if (extname == ".coffee") {
-            content.addToLog(filename, extname, path, dir);
-            gulp.src(path).pipe(coffeescript({ bare: true })).pipe(gulp.dest(dir));
+           // content.addToLog(filename, extname, path, dir);
+           // gulp.src(path).pipe(coffeescript({ bare: true })).pipe(gulp.dest(dir));
         } else if (extname == ".jade") {
             content.addToLog(filename, extname, path, dir);
             gulp.src(path).pipe(gulpJade({ jade: jade, pretty: true })).pipe(htmlmin({ collapseWhitespace: true })).pipe(gulp.dest(dir));
         }
-        // else if (extname == ".js") {
-        //     gulp.src(path).pipe(babel({
-        //         presets: ['es2015']
-        //     })).pipe(gulp.dest(dir));
-        // }
     }, livereloadStart: function () {
-        console.log('livereloadStart', $('#livereloadDirLabel h4').data('url'));
-        if($('#livereloadDirLabel h4').data('url')) {
-            if(preproc.livereloadStartTF != ''){
-                // var restart = require('gulp-restart');
-                // server.exit()
-                // server.kill()
-                // server.process()
-                // preproc.port++;
-                // gulp.watch([pathDir], restart);
-                // preproc.livereloadStartTF.kill();
-                // console.log(gulp.watch.Scopes[1].process.pid)
-                // var dd =preproc.livereloadStartT._events;
-                //
-                // console.log(preproc.livereloadStartT)
-                // for (var key in preproc.livereloadStartT) {
-                //     // if(key=='_events')
-                //     console.log(key)
-                // }
+        var livereloadUrl = $('#livereloadDirLabel h4').data('url');
+        console.log('livereloadStart', livereloadUrl);
+        if(livereloadUrl) {
+            if(preproc.livereloadStartTF != '')
                 preproc.stream.emit('kill');
-                preproc.stream = server({
-                    livereload: true,
-                    directoryListing: {
-                        enable: true,
-                        path:  pathDir
-                    },
-                    open: true,
-                    port: 800
-                });
-                gulp.src(pathDir).pipe(preproc.stream);
-            } else {
+            else
                 preproc.livereloadStartTF = true;
-                preproc.stream = server({
-                    livereload: true,
-                    directoryListing: true,
-                    open: true,
-                    port: 800
-                });
-                gulp.src(pathDir).pipe(preproc.stream);
-            }
-
-            // preproc.livereloadStartT = server({
-            //     livereload: true,
-            //     directoryListing: true,
-            //     open: true,
-            //     port: 80
-            // });
-            //
-            // gulp.src(pathDir).pipe(preproc.livereloadStartT);
-
-            // preproc.stream = server({
-            //
-            //     livereload: true,
-            //     directoryListing: {
-            //         enable: true,
-            //         path:  pathDir
-            //     },
-            //     open: true,
-            //     port: 800,
-            //
-            // });
-            // gulp.src(pathDir).pipe(preproc.stream);
-            // console.log( preproc.stream)
-            // console.log( preproc.stream.emit)
-
-
-
-            // gulp.src(pathDir).pipe(server({
-            //     livereload: true,
-            //     directoryListing: true,
-            //     open: true,
-            //     port: preproc.port
-            // }));
-
+            preproc.stream = server({
+                livereload: true,
+                directoryListing: {
+                    enable: true,
+                    path: livereloadUrl
+                },
+                open: true,
+                port: 800
+            });
+            gulp.src(livereloadUrl).pipe(preproc.stream);
         }
     }
 };
@@ -335,14 +225,14 @@ $(document).ready(function () {
     preproc.start();
 });
 
-//
-// $(document).ready(function () {
-//     $('img').attr({
-//         "ondrag": "return false",
-//         "ondragdrop": "return false",
-//         "ondragstart": "return false"
-//     })
-// });
+
+// TODO: Ливрелоад, почему запускаеть при страте не та папка?
+// OK: Не добавлять в конф двойные элементы
+// TODO: Ливрелоад и Препроц, где ошибка и при каком порядке?
+// OK: Конфиг при старте - ошибка
+// TODO: Uncaught Error: EPERM: operation not permitted, write
+// TODO:
+// TODO:
 
 
 
